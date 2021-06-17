@@ -8,8 +8,9 @@ async function socketIO(app) {
 	  io.adapter(redis({ host: 'localhost', port: 6379 }));
 
   	// io.emit('hi', 'all sockets from server 01');
-    io.on("connection" , function(socket){
-    	socket.emit('hello', `Connect to server -> ${PORT}`);
+    io.on("connection", function (socket) {
+        const time = new Date()
+    	socket.emit('hello', `Connect to server -> ${PORT}, time: ${String(time)}`);
 
         console.log(`User connected to ${PORT} with socketID:` + socket.id);
 
