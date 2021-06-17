@@ -1,6 +1,5 @@
-
-const process = require('process');
-const uuidApp = process.pid
+require('dotenv').config()
+const PORT = process.env.PORT;
 
 async function socketIO(app) {
     const io = require('socket.io')(app.server);
@@ -10,13 +9,13 @@ async function socketIO(app) {
 
   	// io.emit('hi', 'all sockets from server 01');
     io.on("connection" , function(socket){
-    	socket.emit('hello', `Connect to server -> ${uuidApp}`);
+    	socket.emit('hello', `Connect to server -> ${PORT}`);
 
-        console.log(`User connected to ${uuidApp} with socketID:` + socket.id);
+        console.log(`User connected to ${PORT} with socketID:` + socket.id);
 
         socket.on("user_send_message_to_all" , (data) => {
         	console.log(data);
-        	io.sockets.emit("server_send_data_to_all" , `Server ${uuidApp}: ${data}`);
+        	io.sockets.emit("server_send_data_to_all" , `Server ${PORT}: ${data}`);
         })
     });
 }
