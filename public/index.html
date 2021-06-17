@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>App 01</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        var socket = io.connect("http://localhost:3000", {
+            transports: ['websocket'], // transports: ['polling']
+        });
+
+        socket.on("server_send_data", function (data) {
+            console.log(data);
+        });
+
+        socket.on("hello", (data) => {
+            console.log(data);
+        });
+
+        socket.on("hi", (data) => {
+            console.log(data);
+        });
+
+        socket.on("server_send_data_to_all", (data) => {
+            alert(data);
+            console.log(data);
+        });
+
+
+        $(document).ready(function () {
+            $("#btndangky").click(function () {
+                // alert("OKKK");
+                socket.emit("user_send_message_to_all", $("#txtuser").val());
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <h1> Chat Server 01 </h1>
+        <input type="text" id="txtuser" name="" /> <br />
+        <input type="button" id="btndangky" name="" value="Send" />
+    </div>
+
+</body>
+
+</html>
