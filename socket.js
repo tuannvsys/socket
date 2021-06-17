@@ -18,6 +18,7 @@ async function socketIO(app) {
         	console.log(data);
         	io.sockets.emit("server_send_data_to_all" , `Server ${PORT}: ${data}`);
         })
+        console.log( socket.client.conn.server.clientsCount + " users connected" );
     });
 }
 
