@@ -14,6 +14,10 @@ async function socketIO(app) {
 
         console.log(`User connected to ${PORT} with socketID:` + socket.id);
 
+        socket.on("ping" , (data) => {
+        	socket.emit('hello', `Connect to server -> ${PORT}, time: ${String(time)}`);
+        })
+
         socket.on("user_send_message_to_all" , (data) => {
         	console.log(data);
         	io.sockets.emit("server_send_data_to_all" , `Server ${PORT}: ${data}`);
