@@ -23,7 +23,7 @@ async function run() {
 
 async function Task() {
     return new Promise((resolve, reject) => {
-        var socket = io.connect("http://127.0.0.1:3001", { transports: ['websocket'] })
+        var socket = io.connect("http://45.32.60.107", { transports: ['websocket'] })
         socket.on("hello", (data) => {
             console.log(">>>>>>>>>>:", data);
             resolve(true)
