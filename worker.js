@@ -47,7 +47,7 @@ async function run() {
 
 async function Task() {
     return new Promise((resolve, reject) => {
-        var socket = io.connect("http://45.32.60.107", { transports: ['websocket'] })
+        var socket = io.connect("http://45.32.60.107", {  upgrade: false, transports: ['websocket'] })
         socket.on("hello", (data) => {
             console.log(">>>>>>>>>>:", data);
             resolve(socket.emit("ping", "Ping Pong"))
